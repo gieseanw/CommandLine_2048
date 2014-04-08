@@ -7,6 +7,7 @@
 * into one for the game 2048
 */
 
+#pragma once
 #include <iostream>
 
 struct Value{
