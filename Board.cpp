@@ -169,8 +169,8 @@ pair<int, int> Board::GetEmptyIndex(){
   set<int>::iterator found = m_emptyIndices.begin();
   for(int i=0;i<index;++i)
     ++found;
-  toReturn.first = *found / 4;
-  toReturn.second = *found % 4;
+  toReturn.first = *found / m_size;
+  toReturn.second = *found % m_size;
   m_emptyIndices.erase(*found);
   return toReturn;
 }
@@ -180,7 +180,7 @@ void Board::RemoveEmptyIndex(int _row, int _col){
     cerr << "Error! Attempt to remove invalid index: " << _row << ", " << _col << endl;
     return;
   }
-  m_emptyIndices.erase(_row*4+_col);
+  m_emptyIndices.erase(_row*m_size+_col);
 }
 
 void Board::AddEmptyIndex(int _row, int _col){
@@ -189,7 +189,7 @@ void Board::AddEmptyIndex(int _row, int _col){
     return;
   }
   m_board[_row][_col].Reset();
-  m_emptyIndices.insert(_row*4+_col);
+  m_emptyIndices.insert(_row*m_size+_col);
 }
 
 bool Board::PlaceRandomVal(){
