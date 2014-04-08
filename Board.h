@@ -45,7 +45,7 @@ class Board{
     //Returns the current score
     //The score is incremented on a merge operation by the
     //  merged value
-    size_t Score();
+    size_t GetScore();
 
   private:
     //Copy Constructor
@@ -91,10 +91,10 @@ class Board{
     //Un-Identifies (_row, _col) as a candidate for random Value placement
     void RemoveEmptyIndex(int _row, int _col);
     
-    //PlaceRandom
+    //PlaceRandomVal
     //Updates the board at a viable empty index with a "Random" value
     //The random value shall be 2 with 90% probability, and 4 otherwise
-    bool PlaceRandom();
+    bool PlaceRandomVal();
     
     //NextRandom
     //Returns a random value of 2 with 90% probability, and 4 otherwise
@@ -130,7 +130,7 @@ class Board{
     
     //ClearMerged
     //Resets the merged flags of all Values in the board to false
-    void ClearMerged();
+    void ClearMergedFlags();
 
     //member variables
     int m_size;

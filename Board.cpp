@@ -33,8 +33,8 @@ Board::Board(int _size):m_size(_size),m_board(_size,vector<Value>(_size,Value())
     m_emptyIndices.insert(i);
 
   //add 2 random values on the board (either a 2 or a 4)
-  PlaceRandom();
-  PlaceRandom();
+  PlaceRandomVal();
+  PlaceRandomVal();
 }
 
 //prints ASCII board to _fout
@@ -64,22 +64,22 @@ bool Board::Update(char _direction){
     case 'A':
       //cout << "Left" << endl;
       if(UpdateHorizontal(LEFT))
-        PlaceRandom();
+        PlaceRandomVal();
       break;
     case 'D':
       //cout << "Right" << endl;
       if(UpdateHorizontal(RIGHT))
-        PlaceRandom();
+        PlaceRandomVal();
       break;
     case 'W':
       //cout << "Up" << endl;
       if(UpdateVertical(UP))
-        PlaceRandom();
+        PlaceRandomVal();
       break;
     case 'S':
       //cout << "Down" << endl;
       if(UpdateVertical(DOWN))
-        PlaceRandom();
+        PlaceRandomVal();
       break;
     case 'X':
       cerr << "Exiting" << endl;
@@ -89,7 +89,7 @@ bool Board::Update(char _direction){
       cerr << "Err. Invalid direction" << endl;
       return false;
   }
-  ClearMerged();
+  ClearMergedFlags();
   return true;
 }
 
@@ -192,7 +192,7 @@ void Board::AddEmptyIndex(int _row, int _col){
   m_emptyIndices.insert(_row*4+_col);
 }
 
-bool Board::PlaceRandom(){
+bool Board::PlaceRandomVal(){
   pair<int,int> nextIndex = GetEmptyIndex();
   if(nextIndex.first == -1 || nextIndex.second == -1){
     cerr << "Invalid next index: " << nextIndex.first << ", " << nextIndex.second <<  endl;
@@ -227,7 +227,7 @@ void Board::Merge(int _fromRow, int _fromCol, int _toRow, int _toCol){
   AddEmptyIndex(_fromRow,_fromCol);
 }
 
-void Board::ClearMerged(){
+void Board::ClearMergedFlags(){
   for(int i=0;i<m_size;++i){
     for(int j=0;j<m_size;++j){
       m_board[i][j].m_merged = false;
@@ -235,8 +235,6 @@ void Board::ClearMerged(){
   }
 }
 
-size_t Board::Score(){
+size_t Board::GetScore(){
   return m_score;
 }
-
-

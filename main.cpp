@@ -35,7 +35,7 @@ int main(){
     ClearScreen();
     b.Display(cout);
     cout << "Game over!" << endl;
-    cout << "\n\n Your score: " << b.Score() << "\n\n";
+    cout << "\n\n Your score: " << b.GetScore() << "\n\n";
     cout << "Play again (Y/N)? ";
     getline(cin,input);
     choice=input[0];
